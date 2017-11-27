@@ -1,6 +1,12 @@
+{-# LANGUAGE OverloadedStrings  #-}
+
 module Main where
 
 import Lib
+import DataSource
 
 main :: IO ()
-main = someFunc
+main = do
+  wm <- parseEmployee <$> getJSON
+  print wm
+  return ()
