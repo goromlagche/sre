@@ -7,14 +7,7 @@ resolver: lts-9.4
 # Local packages, usually specified by relative directory name
 packages:
 - '.'
-- location:
-    git: https://github.com/tathougies/beam.git
-    commit: a3b5e0763843fed48c7eef53fa7d08cfe710342d
-  extra-dep: true
-  subdirs:
-    - beam-core
-    - beam-migrate
-    - beam-postgres
+
 # Packages to be pulled from upstream that are not in the resolver (e.g., acme-missiles-0.3)
 extra-deps: []
 # Override default flag values for local packages and extra-deps
