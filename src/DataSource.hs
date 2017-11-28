@@ -8,7 +8,6 @@ import Data.Sequence as Seq
 import Data.Aeson
 import GHC.Generics
 import qualified Data.ByteString.Lazy.Internal as BS
-import qualified Data.ByteString.Lazy as B
 import Lib
 
 data Employee = Employee
@@ -16,9 +15,6 @@ data Employee = Employee
                 , salary :: T.Text
                 , age    :: T.Text
                 } deriving (Show, Generic, ToJSON, FromJSON)
-
-getJSON :: IO B.ByteString
-getJSON = B.readFile "./ext/data_source.json"
 
 parseEmployee :: BS.ByteString -> Maybe WorkingMemory
 parseEmployee body = decode (body) :: Maybe WorkingMemory
