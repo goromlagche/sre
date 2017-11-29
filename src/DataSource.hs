@@ -2,11 +2,9 @@
 
 module DataSource where
 
-import Data.Text as T
-import Data.Map.Strict as Map
-import Data.Sequence as Seq
-import Data.Aeson
-import GHC.Generics
+import qualified Data.Text                     as T
+import qualified Data.Aeson                    as A
+import qualified GHC.Generics                  as G
 import qualified Data.ByteString.Lazy.Internal as BS
 import Lib
 
@@ -14,7 +12,7 @@ data Employee = Employee
                 { email  :: T.Text
                 , salary :: T.Text
                 , age    :: T.Text
-                } deriving (Show, Generic, ToJSON, FromJSON)
+                } deriving (Show, G.Generic, A.ToJSON, A.FromJSON)
 
 parseEmployee :: BS.ByteString -> Maybe WorkingMemory
-parseEmployee body = decode (body) :: Maybe WorkingMemory
+parseEmployee body = A.decode (body) :: Maybe WorkingMemory
