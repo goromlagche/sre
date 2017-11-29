@@ -1,42 +1,44 @@
-[
-  {
-    "email": "person1@example.com",
-    "salary": "25000",
-    "age": "22"
-  },
-  {
-    "email": "person2@example.com",
-    "salary": "12000",
-    "age": "21"
-  },
-  {
-    "email": "person1@gmail.com",
-    "salary": "35000",
-    "age": "23"
-  },
-  {
-    "email": "person2@yahoo.com",
-    "salary": "50000",
-    "age": "24"
-  },
-  {
-    "email": "person1@facebook.com",
-    "salary": "20000",
-    "age": "50"
-  },
-  {
-    "email": "person3@yandex.com",
-    "salary": "40000",
-    "age": "60"
-  },
-  {
-    "email": "person3@rediff.com",
-    "salary": "35000",
-    "age": "70"
-  },
-  {
-    "email": "person3@zoho.com",
-    "salary": "80000",
-    "age": "80"
-  }
-]
+{
+  "employees": [
+    {
+      "email": "person1@example.com",
+      "salary": "25000",
+      "age": "22"
+    },
+    {
+      "email": "person2@example.com",
+      "salary": "12000",
+      "age": "21"
+    },
+    {
+      "email": "person1@gmail.com",
+      "salary": "35000",
+      "age": "23"
+    },
+    {
+      "email": "person2@yahoo.com",
+      "salary": "50000",
+      "age": "24"
+    },
+    {
+      "email": "person1@facebook.com",
+      "salary": "20000",
+      "age": "50"
+    },
+    {
+      "email": "person3@yandex.com",
+      "salary": "40000",
+      "age": "60"
+    },
+    {
+      "email": "person3@rediff.com",
+      "salary": "35000",
+      "age": "70"
+    },
+    {
+      "email": "person3@zoho.com",
+      "salary": "80000",
+      "age": "80"
+    }
+  ]
+}
