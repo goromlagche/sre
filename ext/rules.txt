@@ -1,4 +1,4 @@
-employee salary < 250000, tax is 0%
-employee salary >= 250000 and < 500000, tax is 5%
-employee salary >= 500000 and < 1000000, tax is 20%
-employee salary >= 250000, tax is 30%
+employee salary < 25000, tax is 0%
+employee salary >= 25000, tax is 5%
+employee salary >= 50000, tax is 20%
+employee salary >= 100000, tax is 30%

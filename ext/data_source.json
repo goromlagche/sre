@@ -1,5 +1,5 @@
 {
-  "employees": [
+  "employee": [
     {
       "email": "person1@example.com",
       "salary": "25000",
@@ -21,23 +21,8 @@
       "age": "24"
     },
     {
-      "email": "person1@facebook.com",
-      "salary": "20000",
-      "age": "50"
-    },
-    {
-      "email": "person3@yandex.com",
-      "salary": "40000",
-      "age": "60"
-    },
-    {
-      "email": "person3@rediff.com",
-      "salary": "35000",
-      "age": "70"
-    },
-    {
       "email": "person3@zoho.com",
-      "salary": "80000",
+      "salary": "100010",
       "age": "80"
     }
   ]

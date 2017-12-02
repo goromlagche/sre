@@ -1,23 +1,29 @@
-{-# LANGUAGE OverloadedStrings  #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell #-}
 
 module RuleParser where
 
 import Lib
 import qualified Data.Text            as T
 import qualified Data.Attoparsec.Text as P
-import qualified Control.Applicative  as A
+import Control.Applicative  as A
 import qualified Data.Map.Strict      as Map
+import Control.Lens
 
 data Rule = Rule
-            { condition :: Condition
-            , action    :: Fact
+            { _condition :: Condition
+            , _action    :: Fact
             } deriving (Show)
 
 data Condition = Condition
-                 { entity    :: T.Text
-                 , field     :: T.Text
-                 , comparator :: [([Ordering], T.Text)]
+                 { _entity    :: T.Text
+                 , _field     :: T.Text
+                 , _comparator :: (T.Text, T.Text)
                  } deriving (Show)
+
+
+makeLenses ''Rule
+makeLenses ''Condition
 
 rules :: P.Parser Rule
 rules = do
@@ -26,8 +32,11 @@ rules = do
   _ <- P.char ' '
   fld <- P.takeTill (== ' ')
   _ <- P.char ' '
-  comperator <- P.takeTill (== ',')
-  let cond = Condition ent fld (evalComp comperator)
+  ord <- P.string "<=" <|> P.string ">="
+         <|> P.string "<" <|> P.string ">" <|> P.string "="
+  _ <- P.char ' '
+  str <- P.takeTill (== ',')
+  let cond = Condition ent fld (ord, str)
   -- seperator
   _ <- P.string ", "
   -- action
@@ -41,14 +50,10 @@ rules = do
 parseRule :: T.Text -> Either String [Rule]
 parseRule = P.parseOnly (A.many rules)
 
--- ">= 250000 and < 500000" ==> [([GT,EQ],"250000"),([LT],"500000")]
-evalComp :: T.Text -> [([Ordering], T.Text)]
-evalComp compStr = map(makeTuple . T.splitOn " " . T.strip)
-                    (T.splitOn "and" compStr)
-  where
-    makeTuple(x:y:_) = ((mapToOrd x), y)
-    mapToOrd "<"  = [LT]
-    mapToOrd "<=" = [LT, EQ]
-    mapToOrd ">" = [GT]
-    mapToOrd ">=" = [GT, EQ]
-    mapToOrd "=" = [EQ]
+evalOrd :: T.Text -> [Ordering]
+evalOrd "<" = [LT]
+evalOrd ">" = [GT]
+evalOrd "=" = [EQ]
+evalOrd "<=" = [LT, EQ]
+evalOrd ">=" = [GT, EQ]
+evalOrd _ = undefined
